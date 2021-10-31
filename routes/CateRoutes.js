@@ -8,9 +8,17 @@ const Stack = createNativeStackNavigator();
 
 const CateRoutes = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="CreateCate" component={CreateCate} />
-      <Stack.Screen name="ListCate" component={ListCate} />
+    <Stack.Navigator initialRouteName="ListCate">
+      <Stack.Screen
+        name="ListCate"
+        component={ListCate}
+        options={{title: 'Categories'}}
+      />
+      <Stack.Screen
+        name="CreateCate"
+        component={CreateCate}
+        options={{title: 'Create Category'}}
+      />
     </Stack.Navigator>
   );
 };

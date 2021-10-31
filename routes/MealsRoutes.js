@@ -8,8 +8,16 @@ const Stack = createNativeStackNavigator();
 const MealsRoutes = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="CreateMeals" component={CreateMeals} />
-      <Stack.Screen name="ListMeals" component={ListMeals} />
+      <Stack.Screen
+        name="ListMeals"
+        component={ListMeals}
+        options={{title: 'Meals'}}
+      />
+      <Stack.Screen
+        name="CreateMeals"
+        component={CreateMeals}
+        options={{title: 'Create Meals'}}
+      />
     </Stack.Navigator>
   );
 };

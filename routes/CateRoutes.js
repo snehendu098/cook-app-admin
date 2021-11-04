@@ -8,7 +8,9 @@ const Stack = createNativeStackNavigator();
 
 const CateRoutes = () => {
   return (
-    <Stack.Navigator initialRouteName="ListCate">
+    <Stack.Navigator
+      initialRouteName="ListCate"
+      screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="ListCate"
         component={ListCate}

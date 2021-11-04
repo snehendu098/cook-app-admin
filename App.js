@@ -8,6 +8,7 @@ import LoginScreen from './screens/LoginScreen';
 import {Provider, useDispatch, useSelector} from 'react-redux';
 import rootReducer from './store';
 import {createStore} from 'redux';
+import {StatusBar} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 const store = createStore(rootReducer);
@@ -46,6 +47,11 @@ function App() {
 function AppWrapper() {
   return (
     <Provider store={store}>
+      <StatusBar
+        backgroundColor="transparent"
+        translucent
+        barStyle="dark-content"
+      />
       <App />
     </Provider>
   );

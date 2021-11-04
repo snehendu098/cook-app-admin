@@ -25,7 +25,9 @@ const SingleCate = props => {
         }}>
         <AntDesign name="edit" size={24} color="#fff" />
       </Pressable>
-      <Text style={styles.text}>{props.title}</Text>
+      <Pressable onPress={props.handleClick}>
+        <Text style={styles.text}>{props.title}</Text>
+      </Pressable>
       <Pressable
         onPress={props.deleteHandler}
         style={{

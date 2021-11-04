@@ -3,6 +3,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import CreateCate from '../screens/cate/CreateCate';
 import ListCate from '../screens/cate/ListCate';
+import UpdateCate from '../screens/cate/UpdateCate';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ const CateRoutes = () => {
         component={CreateCate}
         options={{title: 'Create Category'}}
       />
+      <Stack.Screen name="UpdateCate" component={UpdateCate} />
     </Stack.Navigator>
   );
 };

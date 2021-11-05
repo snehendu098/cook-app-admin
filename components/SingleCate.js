@@ -25,7 +25,15 @@ const SingleCate = props => {
         }}>
         <AntDesign name="edit" size={24} color="#fff" />
       </Pressable>
-      <Pressable onPress={props.handleClick}>
+      <Pressable
+        onPress={props.handleClick}
+        style={{
+          // backgroundColor: 'blue',
+          flex: 1,
+          height: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
         <Text style={styles.text}>{props.title}</Text>
       </Pressable>
       <Pressable
@@ -49,12 +57,13 @@ const styles = StyleSheet.create({
   container: {
     width: 0.95 * width,
     height: 0.07 * height,
-    backgroundColor: '#e5e88e',
+    backgroundColor: '#fff',
     borderRadius: 10,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 10,
+    elevation: 5,
   },
   text: {
     color: '#000',

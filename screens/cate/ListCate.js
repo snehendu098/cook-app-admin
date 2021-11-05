@@ -42,7 +42,10 @@ const ListCate = ({navigation}) => {
         });
       }}
       handleClick={() => {
-        navigation.navigate('Meals', {name: item.name});
+        navigation.navigate('Meals', {
+          screen: 'ListMeal',
+          params: {name: item.name},
+        });
       }}
     />
   );

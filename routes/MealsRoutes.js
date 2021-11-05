@@ -9,7 +9,7 @@ const MealsRoutes = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen
-        name="ListMeals"
+        name="ListMeal"
         component={ListMeals}
         options={{title: 'Meals'}}
       />

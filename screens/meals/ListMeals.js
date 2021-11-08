@@ -17,8 +17,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 const {width, height} = Dimensions.get('window');
 
 const ListMeals = ({navigation, route}) => {
-  const {name} = route.params;
-  const [selectedValue, setSelectedValue] = useState(name);
+  const item = route.params;
+  const [selectedValue, setSelectedValue] = useState(item ? item.name : '');
   const [cate, setCate] = useState([]);
   const [meals, setMeals] = useState([]);
 
@@ -75,14 +75,14 @@ const ListMeals = ({navigation, route}) => {
           keyExtractor={item => item._id}
         />
       )}
-      <TouchableNativeFeedback
-        onPress={() =>
-          navigation.navigate('CreateMeals', {cate, selected: selectedValue})
-        }>
-        <View style={styles.add}>
+      <View style={styles.add}>
+        <TouchableNativeFeedback
+          onPress={() =>
+            navigation.navigate('CreateMeals', {cate, selected: selectedValue})
+          }>
           <AntDesign name="plus" size={45} color="#fff" />
-        </View>
-      </TouchableNativeFeedback>
+        </TouchableNativeFeedback>
+      </View>
     </View>
   );
 };
@@ -112,5 +112,6 @@ const styles = StyleSheet.create({
     borderRadius: (0.2 * width) / 2,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
   },
 });

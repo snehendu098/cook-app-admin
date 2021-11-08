@@ -1,4 +1,5 @@
 import {Picker} from '@react-native-picker/picker';
+import {launchImageLibrary} from 'react-native-image-picker';
 import React, {useState} from 'react';
 import {
   Dimensions,
@@ -6,13 +7,13 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from 'react-native';
 
 const CreateMeals = ({navigation, route}) => {
   const {cate, selected} = route.params;
   console.log(cate, selected);
-  const [selectedValue, setSelectedValue] = useState(selected);
   //
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -21,6 +22,19 @@ const CreateMeals = ({navigation, route}) => {
   const [meatIncluded, setMeatIncluded] = useState(false);
   const [steps, setSteps] = useState('');
   const [materials, setMaterials] = useState('');
+  const [image, setImage] = useState(null);
+
+  const handleImage = () => {
+    launchImageLibrary(
+      {
+        mediaType: 'photo',
+        quality: 1,
+      },
+      res => {
+        console.log(res);
+      },
+    );
+  };
 
   return (
     <View style={{flex: 1}}>
@@ -59,14 +73,53 @@ const CreateMeals = ({navigation, route}) => {
         />
 
         <Picker
-          selectedValue={selectedValue}
+          selectedValue={category}
           style={styles.picker}
-          onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+          onValueChange={(itemValue, itemIndex) => setcategory(itemValue)}
           dropdownIconColor="#000">
           {cate.map(item => (
             <Picker.Item key={item._id} label={item.name} value={item.name} />
           ))}
         </Picker>
+        <TouchableOpacity
+          style={{
+            width: 0.5 * width,
+            height: 0.06 * height,
+            backgroundColor: '#fff',
+            marginTop: 10,
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 30,
+            elevation: 5,
+          }}
+          onPress={() => setNonVeg(!nonVeg)}>
+          <Text style={{color: '#000'}}>
+            {nonVeg ? 'Non-Veg' : 'Vegeterian'}
+          </Text>
+          <Text style={{color: 'red', fontSize: 10}}>Click to change</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{
+            width: 0.5 * width,
+            height: 0.06 * height,
+            backgroundColor: '#fff',
+            marginTop: 10,
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 30,
+            elevation: 5,
+          }}
+          onPress={() => setMeatIncluded(!meatIncluded)}>
+          <Text style={{color: '#000'}}>
+            {meatIncluded ? 'Meat Included' : 'No Meat Included'}
+          </Text>
+          <Text style={{color: 'red', fontSize: 10}}>Click to change</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.touchable} onPress={handleImage}>
+          <Text style={{color: '#000'}}>Select image</Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
@@ -89,6 +142,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#000',
     marginTop: 0,
+  },
+  touchable: {
+    width: 0.5 * width,
+    height: 0.06 * height,
+    backgroundColor: '#fff',
+    marginTop: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 30,
+    elevation: 5,
   },
   container: {
     flexGrow: 1,
